@@ -34,7 +34,7 @@ const VideoSchema = new mongoose.Schema({
         required: true
     },
     Comments: {
-        type: String,
+        type: [String],
         required: false
     }
 },{
@@ -42,5 +42,5 @@ const VideoSchema = new mongoose.Schema({
 }
 
 );
-const Video=mongoose.model("Video",VideoSchema);
+const Video=mongoose.model("tblvideos",VideoSchema);
 module.exports=Video;
