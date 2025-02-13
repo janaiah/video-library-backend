@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const VideoSchema = new mongoose.Schema({
     VideoId: {
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
@@ -18,19 +18,19 @@ const VideoSchema = new mongoose.Schema({
         required: true
     },
     Likes: {
-        type: String,
+        type: Number,
         required: false
     },
     DisLikes: {
-        type: String,
+        type: Number,
         required: false
     },
     Views: {
-        type: String,
+        type: Number,
         required: false
     },
     CategoryId: {
-        type: String,
+        type: Number,
         required: true
     },
     Comments: {

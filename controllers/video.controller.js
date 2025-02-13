@@ -74,4 +74,39 @@ const deleteVideo=async(req,res)=>{
         res.end();
     }
 }
-module.exports={getVideos,getVideoById,addVideo,updateVideo,deleteVideo};
+ const getVideosByCategory=async(req,res)=>{
+    try{
+        const {id}=req.params;
+        const videos=await Video.find({CategoryId:id});
+        if(!videos)
+        {
+            return res.status(404).json({message:"Videos not found"});
+        }
+        res.status(200).json(videos);
+        res.end();
+    }
+    catch(error){
+        res.status(500).json({ message: error.message });
+        res.end();
+        }
+ };
+ const searchVideo=async(req,res)=>{
+    try{
+        const {key}=req.params;
+        const videos=await Video.find({ "$or":[{Title:{$regex:key,$options:'i'}},{Description:{$regex:key,$options:'i'}}]});
+        if(!videos)
+        {
+            return res.status(404).json({message:"Videos not found"});
+        }
+        res.status(200).json(videos);
+        res.end();
+
+    }
+    catch(error)
+    {
+        res.status(500).json({ message: error.message });
+    }
+
+ } ;  
+
+module.exports={getVideos,getVideoById,addVideo,updateVideo,deleteVideo,getVideosByCategory,searchVideo};
